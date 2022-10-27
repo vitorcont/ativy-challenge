@@ -67,18 +67,18 @@ router.get("/:id", async (req, res, prox) => {
 	}
 });
 
-router.put("/:id", authenticateUser, async (req, res, prox) => {
+router.put("/:id", async (req, res, prox) => {
 	const id = req.params.id;
 	const data = req.body;
 	try {
 		const userData = await UserService.update({ ...data, id: id });
-		res.status(200).json({ ...userData, password: undefined });
+		res.status(200).json(userData);
 	} catch (err) {
 		prox(err);
 	}
 });
 
-router.delete("/:id", authenticateUser, async (req, res, prox) => {
+router.delete("/:id", async (req, res, prox) => {
 	const id = req.params.id;
 	try {
 		await UserService.remove(id);

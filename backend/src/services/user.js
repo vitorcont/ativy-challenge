@@ -75,10 +75,14 @@ const UserService = {
 			throw new Error("field validation error");
 		}
 
+		const finalData = {
+			...updatedData,
+			updatedAt: new Date().toISOString(),
+		};
+
 		await userModel.update(
 			{
-				...updatedData,
-				updatedAt: new Date().toISOString(),
+				finalData,
 			},
 			{
 				where: {
@@ -86,14 +90,20 @@ const UserService = {
 				},
 			},
 		);
+
+		return finalData;
 	},
 
 	remove: async (id) => {
-		return userModel.destroy({
+		const data = await userModel.destroy({
 			where: {
 				id,
 			},
 		});
+
+		if (!data) {
+			throw new Error("user not found");
+		}
 	},
 
 	updateToken: async (id, token) => {
@@ -108,7 +118,6 @@ const UserService = {
 			},
 		);
 	},
-
 	findByParams: async (params) => {
 		const result = await userModel.find({
 			where: params,

@@ -36,4 +36,4 @@ app.use((err, req, res, prox) => {
 	res.status(400).json({ message: err.message });
 });
 
-app.listen(config.get("api.porta"), () => console.log("API RUNNING PORT 8080"));
+app.listen(config.get("api.porta"), () => console.log("API RUNNING PORT 4547"));
