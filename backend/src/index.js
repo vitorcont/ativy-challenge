@@ -6,7 +6,6 @@ import taskRouter from "./controllers/task.js";
 import authRouter from "./controllers/auth.js";
 import { config } from "dotenv";
 config();
-
 import cors from "cors";
 
 const app = express();

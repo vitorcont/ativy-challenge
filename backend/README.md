@@ -1,22 +1,41 @@
-# INFORMATIVOS GERAIS:
+# Informativos API
 
-## Para criar a sua DB digite os seguintes comandos:
+### Requisitos
+
+- Yarn (ˆ1.22.0)
+- Node (˜16.0.0)
+- MySql Server
+- MySql CLI
+
+### Técnologias
+
+- Sequelize
+- Nodemailer
+- Nodemon
+- Express
+- jsonwebtoken
+
+## Instruções de configuração do projeto
+
+Para iniciar o terminal mySql basta digitar no terminal:
 
 ```shell
-mysql -u root -p 123123
+mysql -u root -p
 ```
 
-para abrir o terminal mysql
+Então devemos criar o banco de dados com o seguinte comando:
 
 ```shell
 CREATE DATABASE ativy_backend;
 ```
 
-criando a sua db
+Após isso basta executar o seguinte comando na pasta root do projeto para criar as tabelas:
 
 ```shell
-exit
+yarn tables
 ```
+
+Sua API está configurada! Agora basta iniciar a execução, siga o passo a passo abaixo.
 
 para sair do terminal
 
@@ -26,8 +45,10 @@ node ./src/database/criarTabelas.js
 
 para criar tabelas
 
-## Para rodar o projeto digite no terminal:
+## Instruções para iniciar a API
+
+Para rodar a API basta rodar o seguinte comando:
 
 ```shell
-npm start
+yarn start
 ```
