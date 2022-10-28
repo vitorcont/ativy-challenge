@@ -1,3 +1,3 @@
-const { hash } = require("bcryptjs");
+const { hash, compare } = require("bcryptjs");
 
-module.exports = hash;
+module.exports = { hash, compare };

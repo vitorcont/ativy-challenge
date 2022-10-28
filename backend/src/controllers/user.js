@@ -6,7 +6,7 @@ import { authenticateUser } from "../middleware/authentication.js";
 
 const router = Router();
 
-router.get("/", async (req, res, prox) => {
+router.get("/", authenticateUser, async (req, res, prox) => {
 	try {
 		const response = await UserService.listAll();
 		const filteredResponse = response.map((item) => ({
@@ -57,7 +57,7 @@ router.post("/", async (req, res, prox) => {
 	}
 });
 
-router.get("/:id", async (req, res, prox) => {
+router.get("/:id", authenticateUser, async (req, res, prox) => {
 	const id = req.params.id;
 	try {
 		const userData = await UserService.getById(id);
@@ -67,7 +67,7 @@ router.get("/:id", async (req, res, prox) => {
 	}
 });
 
-router.put("/:id", async (req, res, prox) => {
+router.put("/:id", authenticateUser, async (req, res, prox) => {
 	const id = req.params.id;
 	const data = req.body;
 	try {
@@ -78,7 +78,7 @@ router.put("/:id", async (req, res, prox) => {
 	}
 });
 
-router.delete("/:id", async (req, res, prox) => {
+router.delete("/:id", authenticateUser, async (req, res, prox) => {
 	const id = req.params.id;
 	try {
 		await UserService.remove(id);

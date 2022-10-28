@@ -1,11 +1,12 @@
 import { config } from "dotenv";
+config();
 import tokenVerifier from "jsonwebtoken";
 
 export const authenticateUser = (req, res, prox) => {
 	const authToken = req.headers.authorization;
 
 	if (!authToken) {
-		return res.status(401).send();
+		return res.status(401).json({ message: "unauthorized" });
 	}
 	const token = authToken.split(" ")[1];
 
@@ -14,6 +15,6 @@ export const authenticateUser = (req, res, prox) => {
 
 		return prox();
 	} catch (err) {
-		return res.status(401).send();
+		return res.status(401).json({ message: "unauthorized" });
 	}
 };

@@ -3,6 +3,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import config from "config";
 import userRouter from "./controllers/user.js";
+import authRouter from "./controllers/auth.js";
+
 import cors from "cors";
 
 const app = express();
@@ -29,7 +31,7 @@ app.use((req, res, prox) => {
 
 app.use("/user", userRouter);
 // app.use("/types", typesRouter);
-// app.use("/auth", authRouter);
+app.use("/auth", authRouter);
 // app.use("/report", reportRouter);
 
 app.use((err, req, res, prox) => {

@@ -1,6 +1,8 @@
 import userModel from "../models/user.js";
 import { uuid } from "uuidv4";
-import hash from "../utils/hash.cjs";
+import { hash } from "../utils/hash.cjs";
+import { config } from "dotenv";
+config();
 
 const UserService = {
 	create: async (data) => {
@@ -13,6 +15,9 @@ const UserService = {
 			throw new Error("user already exists");
 		}
 		const hashedPassword = await hash(data.password, 8);
+
+		delete data.password;
+
 		const result = await userModel.create({
 			id: uuid(),
 			password: hashedPassword,
@@ -118,13 +123,18 @@ const UserService = {
 			},
 		);
 	},
-	findByParams: async (params) => {
+	filterByParams: async (params) => {
 		const result = await userModel.find({
 			where: params,
 		});
 		return result;
 	},
-
+	findByParam: async (params) => {
+		const result = await userModel.findOne({
+			where: params,
+		});
+		return result;
+	},
 	listAll: async () => {
 		return await userModel.findAll();
 	},
