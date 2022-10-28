@@ -1,11 +1,13 @@
 import userModel from "../models/user.js";
-const models = [userModel];
+import taskModel from "../models/task.js";
+
+const models = [userModel, taskModel];
 
 const createTables = async () => {
 	models.map((item) => {
 		item
 			.sync()
-			.then(() => console.log("Tabelas Criadas"))
+			.then(() => console.log("Tables Created"))
 			.catch();
 	});
 };

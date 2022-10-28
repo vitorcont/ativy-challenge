@@ -1,9 +1,11 @@
 import "module-alias/register.js";
 import express from "express";
 import bodyParser from "body-parser";
-import config from "config";
 import userRouter from "./controllers/user.js";
+import taskRouter from "./controllers/task.js";
 import authRouter from "./controllers/auth.js";
+import { config } from "dotenv";
+config();
 
 import cors from "cors";
 
@@ -30,12 +32,13 @@ app.use((req, res, prox) => {
 });
 
 app.use("/user", userRouter);
-// app.use("/types", typesRouter);
+app.use("/task", taskRouter);
 app.use("/auth", authRouter);
-// app.use("/report", reportRouter);
 
 app.use((err, req, res, prox) => {
 	res.status(400).json({ message: err.message });
 });
 
-app.listen(config.get("api.porta"), () => console.log("API RUNNING PORT 4547"));
+app.listen(process.env.API_PORT, () =>
+	console.log(`API RUNNING PORT ${process.env.API_PORT}`),
+);

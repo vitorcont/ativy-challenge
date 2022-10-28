@@ -1,12 +1,13 @@
 import Sequelize from "sequelize";
-import config from "config";
+import { config } from "dotenv";
+config();
 
 const instance = new Sequelize(
-	config.get("mysql.database"),
-	config.get("mysql.user"),
-	config.get("mysql.password"),
+	process.env.DB_NAME,
+	process.env.DB_USER,
+	process.env.DB_PASSWORD,
 	{
-		host: config.get("mysql.host"),
+		host: process.env.DB_HOST,
 		dialect: "mysql",
 	},
 );

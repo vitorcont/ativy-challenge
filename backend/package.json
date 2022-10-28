@@ -7,7 +7,7 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "nodemon ./src/index.js localhost 8080",
-		"tables": "node ./src/database/criarTabelas.js"
+		"tables": "node ./src/database/createTables.js"
 	},
 	"_moduleAliases": {
 		"@portal": "/src"
