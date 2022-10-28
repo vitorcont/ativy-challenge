@@ -3,6 +3,7 @@ import "module-alias/register.js";
 
 import UserService from "../services/user.js";
 import { authenticateUser } from "../middleware/authentication.js";
+import { getToken } from "../utils/auth.js";
 
 const router = Router();
 
@@ -13,7 +14,7 @@ router.get("/", authenticateUser, async (req, res, prox) => {
 			id: item.id,
 			name: item.name,
 			email: item.email,
-			profileType: item.profileType,
+			birth: item.birth,
 			createdAt: item.createdAt,
 			updatedAt: item.updatedAt,
 		}));
@@ -24,21 +25,20 @@ router.get("/", authenticateUser, async (req, res, prox) => {
 });
 
 router.get("/me", authenticateUser, async (req, res, prox) => {
-	// const authToken = req.headers.authorization;
-	// const token = authToken.split(" ")[1];
-	// const response = await tabela.findByToken(token);
-	// if (token) {
-	// 	res.status(200).json({
-	// 		id: response.id,
-	// 		name: response.name,
-	// 		email: response.email,
-	// 		profileType: response.profileType,
-	// 		createdAt: response.createdAt,
-	// 		updatedAt: response.updatedAt,
-	// 	});
-	// } else {
-	// 	res.status(400).json({ message: "user_not_found" });
-	// }
+	try {
+		const token = getToken(req);
+		const response = await UserService.findByParam({ token });
+		res.status(200).json({
+			id: response.id,
+			name: response.name,
+			email: response.email,
+			birth: response.birth,
+			createdAt: response.createdAt,
+			updatedAt: response.updatedAt,
+		});
+	} catch (err) {
+		prox(err);
+	}
 });
 
 router.post("/", async (req, res, prox) => {

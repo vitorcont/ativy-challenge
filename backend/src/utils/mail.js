@@ -1,7 +1,8 @@
 import nodemailer from "nodemailer";
-require("dotenv").config();
+import { config } from "dotenv";
+config();
 
-const sendRecoveryMail = async (message, reciever) => {
+export const sendRecoveryMail = async (message, reciever) => {
 	const transporter = nodemailer.createTransport({
 		service: process.env.EMAIL_PROVIDER,
 		auth: {
@@ -17,13 +18,5 @@ const sendRecoveryMail = async (message, reciever) => {
 		text: `Sua nova senha foi definida para ${message}, não se esqueça de altera-lá posteriormente`,
 	};
 
-	await transporter.sendMail(mailOptions, function (error, info) {
-		if (error) {
-			throw new Error(error);
-		} else {
-			console.log("Email sent: " + info.response);
-		}
-	});
+	await transporter.sendMail(mailOptions);
 };
-
-module.exports = { sendRecoveryMail };

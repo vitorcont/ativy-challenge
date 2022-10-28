@@ -16,9 +16,8 @@ router.post("/", async (req, res, prox) => {
 router.post("/recovery", async (req, res, prox) => {
 	try {
 		const data = req.body;
-		const authData = new Auth(data);
-		await authData.passwordRecovery();
-		res.status(200).json();
+		await AuthService.passwordRecovery(data.email);
+		res.status(200).json({ message: "email sent" });
 	} catch (err) {
 		prox(err);
 	}

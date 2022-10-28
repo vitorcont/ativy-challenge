@@ -13,11 +13,10 @@ const TaskService = {
 		return result;
 	},
 
-	getById: async (taskId, userId) => {
+	getById: async (taskId) => {
 		const result = await taskModel.findOne({
 			where: {
 				id: taskId,
-				userId,
 			},
 		});
 
@@ -31,6 +30,16 @@ const TaskService = {
 	update: async (data) => {
 		const fields = ["name", "description", "dueDate", "concludedAt"];
 		const updatedData = {};
+
+		const result = await taskModel.findOne({
+			where: {
+				id: data.id,
+			},
+		});
+
+		if (!result) {
+			throw new Error("task not found");
+		}
 
 		fields.map(async (field) => {
 			const value = data[field];
@@ -51,16 +60,11 @@ const TaskService = {
 			updatedAt: new Date().toISOString(),
 		};
 
-		await taskModel.update(
-			{
-				finalData,
+		await taskModel.update(finalData, {
+			where: {
+				id: data.id,
 			},
-			{
-				where: {
-					id: data.id,
-				},
-			},
-		);
+		});
 
 		return finalData;
 	},
@@ -76,7 +80,7 @@ const TaskService = {
 		}
 	},
 	filterByParams: async (params) => {
-		const result = await taskModel.find({
+		const result = await taskModel.findAll({
 			where: params,
 		});
 		return result;

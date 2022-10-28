@@ -26,11 +26,10 @@ const UserService = {
 
 		return result;
 	},
-
 	getById: async (id) => {
 		const result = await userModel.findOne({
 			where: {
-				id: id,
+				id,
 			},
 		});
 
@@ -42,18 +41,25 @@ const UserService = {
 		delete result.password;
 		return result;
 	},
-
 	update: async (data) => {
 		const fields = ["name", "email", "password", "birth"];
 		const updatedData = {};
+		const result = await userModel.findOne({
+			where: {
+				id: data.id,
+			},
+		});
 
-		Promise.all(
+		if (!result) {
+			throw new Error("user not found");
+		}
+		await Promise.all(
 			fields.map(async (field) => {
 				const value = data[field];
 				if (field === "password" && value) {
 					const hashedPassword = await hash(value, 8);
 
-					updatedData[field] = await hashedPassword;
+					updatedData[field] = hashedPassword;
 					await userModel.update(
 						{
 							...updatedData,
@@ -133,6 +139,9 @@ const UserService = {
 		const result = await userModel.findOne({
 			where: params,
 		});
+		if (!result) {
+			throw new Error("user not found");
+		}
 		return result;
 	},
 	listAll: async () => {

@@ -1,11 +1,10 @@
 import { compare } from "../utils/hash.cjs";
 import tokenVerifier from "jsonwebtoken";
 import { config } from "dotenv";
+import { hash } from "../utils/hash.cjs";
 config();
-// import User from "../../services/user.js";
-// import { sendRecoveryMail } from "../../utils/mail";
-// import { hash } from "bcryptjs";
 import UserService from "./user.js";
+import { sendRecoveryMail } from "../utils/mail.js";
 
 const AuthService = {
 	login: async (data) => {
@@ -31,22 +30,20 @@ const AuthService = {
 		return token;
 	},
 
-	// passwordRecovery: async () => {
-	// 	const result = await tabela.find(this.email);
-	// 	if (result) {
-	// 		var arr = [];
-	// 		while (arr.length < 5) {
-	// 			var r = Math.floor(Math.random() * 100) + 1;
-	// 			if (arr.indexOf(r) === -1) arr.push(r);
-	// 		}
-	// 		const newPassword = arr.join("");
-	// 		const hashedPassword = await hash(newPassword, 8);
-	// 		tabela.update(result.id, { password: hashedPassword });
-	// 		await sendRecoveryMail(newPassword, result.email);
-	// 	} else {
-	// 		throw new Error("ERROR");
-	// 	}
-	// },
+	passwordRecovery: async (email) => {
+		const result = await UserService.findByParam({ email });
+		if (!result) {
+			throw new Error("user not found");
+		}
+		var arr = [];
+		while (arr.length < 5) {
+			var r = Math.floor(Math.random() * 100) + 1;
+			if (arr.indexOf(r) === -1) arr.push(r);
+		}
+		const newPassword = arr.join("");
+		await UserService.update({ password: newPassword, id: result.id });
+		await sendRecoveryMail(newPassword, result.email);
+	},
 };
 
 export default AuthService;
