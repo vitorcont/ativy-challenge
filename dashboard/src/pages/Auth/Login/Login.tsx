@@ -12,9 +12,7 @@ const Login = () => {
 
 	return (
 		<div className="flex w-screen h-screen bg-primary items-center justify-center font-[Poppins]">
-			<footer className="absolute w-full bottom-5 text-center text-base text-tertiary">
-				Gerenciamento Clínicas Odontológias | PUC Campinas
-			</footer>
+			<footer className="absolute w-full bottom-5 text-center text-base text-tertiary"></footer>
 		</div>
 	);
 };
