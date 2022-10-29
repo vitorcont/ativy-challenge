@@ -48,6 +48,9 @@ const RouteService = {
 	getStackPath: (name: string): string => {
 		return `${routes.find((o) => o.name === name)?.route}`;
 	},
+	navigate: (route: string, subRoute: string) => {
+		window.location.href = RouteService.getRouteStackPath(route, subRoute);
+	},
 };
 
 export default RouteService;

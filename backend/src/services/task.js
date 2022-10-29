@@ -45,7 +45,8 @@ const TaskService = {
 			const value = data[field];
 			if (
 				(typeof value === "string" && value.length > 0) ||
-				typeof value === "number"
+				typeof value === "number" ||
+				value === null
 			) {
 				updatedData[field] = value;
 			}

@@ -3,7 +3,6 @@ import getInstance from "./instance";
 const AuthApi = {
 	login: async (params: models.AuthRequest) => {
 		const instance = await getInstance();
-		console.log("a");
 		const { data } = await instance.post("/auth", params);
 
 		return data;

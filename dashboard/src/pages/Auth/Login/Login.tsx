@@ -3,12 +3,14 @@ import ToastService from "@portal/services/toast";
 import { Background, Button, Input } from "@portal/components";
 import { useDispatch } from "react-redux";
 import { authenticate } from "@portal/redux/Auth/actions";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
 	const [form, setForm] = useState({
 		email: "",
 		password: "",
 	});
+	const history = useHistory();
 	const dispatch = useDispatch();
 
 	const onSubmit = () => {

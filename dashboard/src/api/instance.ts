@@ -52,7 +52,6 @@ export const setHandleUnauthorizedError = (fn: () => void): void => {
 };
 
 export const getInstance = (): AxiosInstance => {
-	console.log(API_TIMEOUT, API_URL);
 	return axiosInstance;
 };
 
