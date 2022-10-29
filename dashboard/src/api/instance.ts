@@ -1,9 +1,15 @@
 import { StorageEnum } from "./../models/enumerators/storage";
-import Axios, { AxiosError, AxiosInstance, AxiosResponse } from "axios";
+import Axios, {
+	AxiosError,
+	AxiosInstance,
+	AxiosRequestConfig,
+	AxiosResponse,
+} from "axios";
 
-import { getItem, api as handleAxiosError } from "~/services";
+import handleAxiosError from "@portal/services/api";
 
 import { API_TIMEOUT, API_URL } from "../config/env";
+import StorageService from "@portal/services/storage";
 
 interface IHandler {
 	// eslint-disable-next-line no-unused-vars
@@ -16,27 +22,21 @@ const handler: IHandler = {
 	},
 };
 
-const token = getItem(StorageEnum.TOKEN);
-
 const axiosInstance = Axios.create({
 	baseURL: API_URL,
 	headers: {
 		"Content-Type": "application/json",
 		mode: "cors",
-		Authorization: `Bearer ${token}`,
 	},
 	timeout: parseInt(API_TIMEOUT, 1000),
 });
 
-axiosInstance.interceptors.response.use(
-	(response) => response,
-	(error) => {
-		if (error.response.status === 401) {
-			localStorage.removeItem(StorageEnum.TOKEN);
-			window.location.replace("/login");
-		}
-	},
-);
+axiosInstance.interceptors.request.use((request) => {
+	const token = StorageService.getItem(StorageEnum.TOKEN);
+	request.headers.Authorization = token ? `Bearer ${token}` : undefined;
+
+	return request;
+});
 
 axiosInstance.interceptors.response.use(
 	(response: AxiosResponse) => response,
@@ -52,6 +52,7 @@ export const setHandleUnauthorizedError = (fn: () => void): void => {
 };
 
 export const getInstance = (): AxiosInstance => {
+	console.log(API_TIMEOUT, API_URL);
 	return axiosInstance;
 };
 

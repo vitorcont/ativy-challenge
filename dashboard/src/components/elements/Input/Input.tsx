@@ -1,7 +1,25 @@
-import { TextField, TextFieldProps } from "@mui/material";
+import {
+	StandardTextFieldProps,
+	TextField,
+	TextFieldProps,
+} from "@mui/material";
 
-const Input = (props: TextFieldProps) => {
-	return <TextField {...props} />;
+export interface IInputProps extends StandardTextFieldProps {
+	onChangeText: (value: string) => void;
+}
+
+const Input = (props: IInputProps) => {
+	return (
+		<TextField
+			onChange={(event) => {
+				props.onChangeText(event.target.value);
+				if (props.onChange) {
+					props.onChange(event);
+				}
+			}}
+			{...props}
+		/>
+	);
 };
 
 export default Input;

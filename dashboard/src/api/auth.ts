@@ -1,12 +1,13 @@
-import getInstance from './instance';
+import getInstance from "./instance";
 
 const AuthApi = {
-  login: async (params: models.AuthRequest) => {
-    const instance = getInstance();
-    const { data } = await instance.post('/auth', params);
+	login: async (params: models.AuthRequest) => {
+		const instance = await getInstance();
+		console.log("a");
+		const { data } = await instance.post("/auth", params);
 
-    return data;
-  },
+		return data;
+	},
 };
 
 export default AuthApi;

@@ -1,19 +1,42 @@
 import { useEffect, useState } from "react";
-import reactLogo from "@portal/assets/svg/ic_react.svg";
-import { ToastContainer } from "react-toastify";
 import ToastService from "@portal/services/toast";
+import { Background, Button, Input } from "@portal/components";
+import { useDispatch } from "react-redux";
+import { authenticate } from "@portal/redux/Auth/actions";
 
 const Login = () => {
-	const [count, setCount] = useState(0);
+	const [form, setForm] = useState({
+		email: "",
+		password: "",
+	});
+	const dispatch = useDispatch();
 
-	useEffect(() => {
-		ToastService.success();
-	}, []);
+	const onSubmit = () => {
+		dispatch(authenticate(form));
+	};
 
 	return (
-		<div className="flex w-screen h-screen bg-primary items-center justify-center font-[Poppins]">
-			<footer className="absolute w-full bottom-5 text-center text-base text-tertiary"></footer>
-		</div>
+		<Background className="items-center justify-center">
+			<div className="bg-white w-1/3 place-items-center p-4 rounded-md">
+				<div>
+					<Input
+						value={form.email}
+						onChangeText={(value) => setForm({ ...form, email: value })}
+						label="Login"
+						className="w-[100%] mb-9"
+					/>
+				</div>
+				<div className="pt-10">
+					<Input
+						value={form.password}
+						onChangeText={(value) => setForm({ ...form, password: value })}
+						label="Senha"
+						className="w-[100%]"
+					/>
+				</div>
+				<Button label="Login" onPress={onSubmit} />
+			</div>
+		</Background>
 	);
 };
 
