@@ -23,7 +23,7 @@ const DefaultModal = (props: IDefaultModalProps) => {
 			aria-describedby="modal-modal-description"
 		>
 			<div
-				className={`bg-white rounded-md p-8 self-center justify-self-center w-[60%] flex ${props.className}`}
+				className={`absolute bg-white rounded-md p-8 self-center justify-self-center w-[60%] top-[20%] left-[20%] ${props.className}`}
 			>
 				{props.children}
 			</div>

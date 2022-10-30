@@ -5,3 +5,11 @@ export const treatShortDate = (date?: string) => {
 		? DateTime.fromISO(date as string).toLocaleString(DateTime.DATE_SHORT)
 		: "-";
 };
+
+export const fromFormatToFormat = (
+	date: string,
+	fromFormat: string,
+	toFormat: string,
+) => {
+	return DateTime.fromFormat(date, fromFormat).toFormat(toFormat);
+};

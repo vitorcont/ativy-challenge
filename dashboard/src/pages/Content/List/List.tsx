@@ -3,11 +3,10 @@ import {
 	Background,
 	Button,
 	DataTable,
-	DefaultModal,
-	Input,
 	TableAction,
+	TaskModal,
 } from "@portal/components";
-import { DataGrid, GridColumns, GridRowProps } from "@mui/x-data-grid";
+import { GridColumns } from "@mui/x-data-grid";
 import { useDispatch } from "react-redux";
 import { getMe } from "@portal/redux/User/actions";
 import { useReduxState } from "@portal/hooks/useReduxState";
@@ -19,7 +18,6 @@ import {
 } from "@portal/redux/Tasks/actions";
 import { treatShortDate } from "@portal/utils/date";
 import { DateTime } from "luxon";
-import { InputForm } from "@portal/components/modules";
 
 const List = () => {
 	const { user, tasks } = useReduxState();
@@ -62,18 +60,6 @@ const List = () => {
 			renderCell: (o) => treatShortDate(o.row.createdAt),
 			flex: 1,
 		},
-		{
-			field: "",
-			headerName: "",
-			renderCell: (o) => (
-				<TableAction
-					onDelete={onDeleteTask}
-					onEdit={onPressEditTask}
-					rowId={o.row.id}
-				/>
-			),
-			flex: 1,
-		},
 	];
 
 	const onSelectRow = (selected: string[]) => {
@@ -95,9 +81,19 @@ const List = () => {
 		dispatch(updateTask(payload, () => dispatch(getTasks(me?.id ?? ""))));
 	};
 
-	const onCreateTask = () => {
+	const onSubmitModal = () => {
 		setVisible(false);
-		dispatch(createTask(form, () => dispatch(getTasks(me?.id!))));
+		if (modalEdition) {
+			setModalEdition(false);
+			setForm({
+				name: "",
+				description: "",
+				dueDate: "",
+			});
+			dispatch(updateTask(form, () => dispatch(getTasks(me?.id!))));
+		} else {
+			dispatch(createTask(form, () => dispatch(getTasks(me?.id!))));
+		}
 	};
 
 	const onPressEditTask = (id: string) => {
@@ -119,17 +115,6 @@ const List = () => {
 			description: "",
 			dueDate: "",
 		});
-	};
-
-	const onSubmitEdition = () => {
-		setVisible(false);
-		setModalEdition(false);
-		setForm({
-			name: "",
-			description: "",
-			dueDate: "",
-		});
-		dispatch(updateTask(form, () => dispatch(getTasks(me?.id!))));
 	};
 
 	const onDeleteTask = (id: string) => {
@@ -164,55 +149,28 @@ const List = () => {
 				/>
 				<div className="h-[80%] pt-4 w-[100%]">
 					<DataTable
+						onEditRow={onPressEditTask}
+						onDeleteRow={onDeleteTask}
 						className="h-14"
 						rows={taskList}
 						columns={columns}
 						checkboxSelection
 						onSelectionModelChange={(selectionModel) =>
-							onSelectRow(selectionModel!)
+							onSelectRow(selectionModel)
 						}
 						selectionModel={doneItems!}
 					/>
 				</div>
 			</div>
-			<DefaultModal
+			<TaskModal
+				form={form}
+				setForm={setForm}
+				onDimiss={onDismissEdition}
 				visible={visible}
-				onClose={onDismissEdition}
-				setVisible={(value) => setVisible(value)}
-				className={"items-center justify-center flex-col"}
-			>
-				<>
-					<InputForm
-						fields={[
-							{
-								label: "Nome da Tarefa",
-								className: "w-[100%]",
-								value: form.name,
-								onChangeText: (value) => setForm({ ...form, name: value }),
-							},
-							{
-								label: "Data Limite",
-								className: "w-[100%]",
-								value: form.dueDate,
-								onChangeText: (value) => setForm({ ...form, dueDate: value }),
-							},
-							{
-								label: "Descrição",
-								className: "w-[100%]",
-								maxRows: 6,
-								multiline: true,
-								value: form.description,
-								onChangeText: (value) =>
-									setForm({ ...form, description: value }),
-							},
-						]}
-					/>
-					<Button
-						label="Criar"
-						onPress={() => (modalEdition ? onSubmitEdition() : onCreateTask())}
-					/>
-				</>
-			</DefaultModal>
+				setVisible={setVisible}
+				onSubmit={onSubmitModal}
+				buttonLabel={modalEdition ? "Salvar" : "Criar"}
+			/>
 		</Background>
 	);
 };
