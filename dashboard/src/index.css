@@ -7,3 +7,11 @@ body {
 	margin: 0;
 	padding: 0;
 }
+
+.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked {
+	color: #6dc843 !important;
+}
+
+.css-1e2bxag-MuiDataGrid-root .MuiDataGrid-row.Mui-selected {
+	background-color: #def4d4 !important;
+}

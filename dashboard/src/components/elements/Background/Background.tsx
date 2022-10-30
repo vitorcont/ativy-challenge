@@ -13,6 +13,7 @@ const Background = (props: IBackgroundProps) => {
       w-screen 
       h-screen 
       bg-primary 
+			overflow-scroll
       ${props.className}
       `}
 		>

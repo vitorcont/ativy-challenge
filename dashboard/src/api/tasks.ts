@@ -21,11 +21,15 @@ const TasksApi = {
 
 		return data;
 	},
-	create: async (id: string) => {
+	create: async (task: models.Task) => {
 		const instance = await getInstance();
-		const { data } = await instance.get(`/task/${id}`);
+		const { data } = await instance.post("/task", task);
 
 		return data;
+	},
+	delete: async (id: string) => {
+		const instance = await getInstance();
+		await instance.delete(`/task/${id}`);
 	},
 };
 

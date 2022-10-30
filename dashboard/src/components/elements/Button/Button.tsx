@@ -12,7 +12,7 @@ const Button = (props: IButtonProps) => {
 		<button
 			type={"submit"}
 			className={`
-        text-2xl 
+        text-xl 
         font-medium
         text-white 
         w-[100%] 

@@ -29,12 +29,42 @@ export const updateTask =
 			}
 			if (data.concludedAt) {
 				ToastService.success(
-					"Parabéns!! Você concluiu mais uma de suas atividades!",
+					"Parabéns!! Você concluiu mais uma de suas tarefas!",
 				);
 			}
 		} catch (err) {
 			ToastService.error(
-				"Ops, não foi possível atualizar essa atividade no momento.",
+				"Ops, não foi possível atualizar essa tarefa no momento.",
+			);
+		}
+	};
+
+export const createTask =
+	(data: models.Task, callback?: () => void) => async (dispatch: any) => {
+		try {
+			await TasksApi.create(data);
+			if (callback) {
+				callback();
+			}
+			ToastService.success(
+				"Boa! Você criou uma nova tarefa, cuidado com a data limite!!",
+			);
+		} catch (err) {
+			ToastService.error("Ops, não foi possível criar essa tarefa no momento.");
+		}
+	};
+
+export const deleteTask =
+	(id: string, callback?: () => void) => async (dispatch: any) => {
+		try {
+			await TasksApi.delete(id);
+			if (callback) {
+				callback();
+			}
+			ToastService.success("Atividade removida com sucesso!");
+		} catch (err) {
+			ToastService.error(
+				"Ops, não foi possível deletar essa tarefa no momento.",
 			);
 		}
 	};
