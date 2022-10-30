@@ -26,9 +26,9 @@ Referência: https://atomicdesign.bradfrost.com/chapter-2/
 
 Para a gestão de estado foi utilizado o Module Pattern, onde os módulos são divididos por contextos.
 
-### Instruções para executar a dashboard
+## Instruções para executar a dashboard
 
-## Configurações Variáveis de Ambiente
+### Configurações Variáveis de Ambiente
 
 Para começar a rodar a API você deve primeiramente configurar as variáveis de ambiente, segue abaixo o template:
 
@@ -39,7 +39,7 @@ VITE_API_TIMEOUT=10000
 
 Esse template deve ser colocado em um arquivo `.env` dentro da root do projeto dashboard.
 
-## Instruções de configuração do projeto
+### Instruções de configuração do projeto
 
 Para configurar o projeto e instalar suas dependências basta executar o comando abaixo na pasta root do projeto dashboard.
 
@@ -47,7 +47,7 @@ Para configurar o projeto e instalar suas dependências basta executar o comando
 yarn install
 ```
 
-## Instruções para a dashboard
+### Instruções para a dashboard
 
 Para rodar a dashboard basta rodar o seguinte comando:
 
