@@ -7,6 +7,7 @@
 
 ### Técnologias e Bibliotecas
 
+- Typescript
 - React
 - Tailwind
 - Vite
