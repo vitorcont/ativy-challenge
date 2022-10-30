@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
-import ToastService from "@portal/services/toast";
-import { Background, Button, Input } from "@portal/components";
+import { useState } from "react";
+import { Button, IconBackground, Input } from "@portal/components";
 import { useDispatch } from "react-redux";
 import { authenticate } from "@portal/redux/Auth/actions";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Login = () => {
 	const [form, setForm] = useState({
 		email: "",
 		password: "",
 	});
-	const history = useHistory();
 	const dispatch = useDispatch();
 
 	const onSubmit = () => {
@@ -18,9 +16,12 @@ const Login = () => {
 	};
 
 	return (
-		<Background className="items-center justify-center">
-			<div className="bg-white w-1/3 place-items-center p-4 rounded-md">
-				<div>
+		<IconBackground className="items-end justify-end">
+			<div className=" w-1/4 flex flex-col items-center place-items-center p-4 rounded-md mb-[4%] mr-[10%]">
+				<p className="text-primary text-center font-sans bold font-semibold text-xl mr-2">
+					Sua plataforma de tarefas e atividades diárias
+				</p>
+				<div className="w-[100%]">
 					<Input
 						value={form.email}
 						onChangeText={(value) => setForm({ ...form, email: value })}
@@ -28,17 +29,30 @@ const Login = () => {
 						className="w-[100%] mb-9"
 					/>
 				</div>
-				<div className="pt-10">
+				<div className="pt-6 w-[100%]">
 					<Input
 						value={form.password}
 						onChangeText={(value) => setForm({ ...form, password: value })}
 						label="Senha"
 						className="w-[100%]"
+						password
 					/>
 				</div>
-				<Button label="Login" onPress={onSubmit} />
+				<div className="w-[100%]">
+					<Link to="/">
+						<p className="text-primary underline font-sans bold font-semibold text-sm">
+							Esqueceu sua senha?
+						</p>
+					</Link>
+					<Link to="/">
+						<p className="text-primary underline font-sans bold font-semibold text-sm">
+							Não possui uma conta? Clique aqui
+						</p>
+					</Link>
+				</div>
+				<Button className="w-[60%]" label="Entrar" onPress={onSubmit} />
 			</div>
-		</Background>
+		</IconBackground>
 	);
 };
 

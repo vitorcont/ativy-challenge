@@ -1,4 +1,6 @@
 import {
+	IconButton,
+	InputAdornment,
 	StandardTextFieldProps,
 	TextField,
 	TextFieldProps,
@@ -11,14 +13,25 @@ import { DayNumbers } from "luxon";
 import { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { fromFormatToFormat } from "@portal/utils/date";
+import { VisibilityOff, Visibility } from "@mui/icons-material";
 
 export interface IInputProps extends StandardTextFieldProps {
 	onChangeText: (value: string) => void;
 	dateInput?: boolean;
+	password?: boolean;
 }
 
 const Input = (props: IInputProps) => {
-	const [value, setValue] = useState<Dayjs | null>(null);
+	const [passwordVisible, setPasswordVisible] = useState(false);
+
+	const getKeyboardType = () => {
+		if (props.password) {
+			return passwordVisible ? "text" : "password";
+		}
+
+		return props.type;
+	};
+
 	return (
 		<>
 			{props.dateInput ? (
@@ -50,11 +63,31 @@ const Input = (props: IInputProps) => {
 				</LocalizationProvider>
 			) : (
 				<TextField
+					variant="outlined"
+					className={`bg-black ${props.className}`}
+					type={getKeyboardType()}
 					onChange={(event) => {
 						props.onChangeText(event.target.value);
 						if (props.onChange) {
 							props.onChange(event);
 						}
+					}}
+					InputProps={{
+						...(props.password
+							? {
+									endAdornment: (
+										<InputAdornment position="end">
+											<IconButton
+												aria-label="toggle password visibility"
+												onClick={() => setPasswordVisible(!passwordVisible)}
+												edge="end"
+											>
+												{passwordVisible ? <VisibilityOff /> : <Visibility />}
+											</IconButton>
+										</InputAdornment>
+									),
+							  }
+							: { ...props.InputProps }),
 					}}
 					{...props}
 				/>
