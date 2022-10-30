@@ -26,8 +26,6 @@ Referência: https://atomicdesign.bradfrost.com/chapter-2/
 
 Para a gestão de estado foi utilizado o Module Pattern, onde os módulos são divididos por contextos.
 
-Referência: https://atomicdesign.bradfrost.com/chapter-2/
-
 ### Instruções para executar a dashboard
 
 ## Configurações Variáveis de Ambiente
