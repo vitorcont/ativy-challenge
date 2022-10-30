@@ -6,6 +6,7 @@ export type AuthState = {
 
 export type UserState = {
 	me: models.User | null;
+	address: models.Address | null;
 };
 
 export type TasksState = {

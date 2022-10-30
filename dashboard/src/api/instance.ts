@@ -32,6 +32,14 @@ const axiosInstance = Axios.create({
 	timeout: parseInt(API_TIMEOUT, 1000),
 });
 
+const clearAxiosInstance = Axios.create({
+	method: "GET",
+	headers: {
+		"Content-Type": "application/json",
+	},
+	timeout: parseInt(API_TIMEOUT, 1000),
+});
+
 axiosInstance.interceptors.request.use((request) => {
 	const token = StorageService.getItem(StorageEnum.TOKEN);
 	request.headers.Authorization = token ? `Bearer ${token}` : undefined;
@@ -64,6 +72,10 @@ export const setHandleUnauthorizedError = (fn: () => void): void => {
 
 export const getInstance = (): AxiosInstance => {
 	return axiosInstance;
+};
+
+export const getClearInstance = (): AxiosInstance => {
+	return clearAxiosInstance;
 };
 
 export default getInstance;

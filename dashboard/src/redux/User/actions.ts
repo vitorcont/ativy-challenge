@@ -4,7 +4,7 @@ import { StorageEnum } from "@portal/models/enumerators/storage";
 import AuthApi from "@portal/api/auth";
 import StorageService from "@portal/services/storage";
 
-import { USER_ME } from "./types";
+import { USER_ADDRESS, USER_ME } from "./types";
 import ToastService from "@portal/services/toast";
 import UserApi from "@portal/api/user";
 
@@ -29,6 +29,7 @@ export const createUser =
 	(userData: models.User, callback?: () => void) => async (dispatch: any) => {
 		try {
 			const payload = await UserApi.create(userData);
+
 			if (callback) {
 				callback();
 			}
@@ -38,5 +39,21 @@ export const createUser =
 			}, 3000);
 		} catch (err) {
 			ToastService.error("Ops, não foi possívei criar seu usuário no momento.");
+		}
+	};
+
+export const getAddress =
+	(cep: string, callback?: () => void) => async (dispatch: any) => {
+		try {
+			const payload = await UserApi.getAddress(cep);
+			dispatch({
+				payload,
+				type: USER_ADDRESS,
+			});
+			if (callback) {
+				callback();
+			}
+		} catch (err) {
+			ToastService.error("Ops, não foi possívei encontrar esse cep.");
 		}
 	};

@@ -23,11 +23,15 @@ export type SubRoute = {
 };
 
 export type User = {
-	id: string;
+	id?: string;
 	name: string;
 	email: string;
 	birth: string;
-	address: models.Address;
+	zipcode: string;
+	street: string;
+	district: string;
+	city: string;
+	state: string;
 };
 
 export type Address = {

@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, IconBackground, Input, InputForm } from "@portal/components";
 import { useDispatch } from "react-redux";
 import { recovery } from "@portal/redux/Auth/actions";
 import { validateEmpty, validateEqual } from "@portal/utils/validators";
 import ToastService from "@portal/services/toast";
-import { createUser } from "@portal/redux/User/actions";
+import { createUser, getAddress } from "@portal/redux/User/actions";
+import { useReduxState } from "@portal/hooks/useReduxState";
 
 const Registration = () => {
+	const { user } = useReduxState();
+	const { address } = user;
 	const [form, setForm] = useState({
 		name: "",
 		birth: "",
@@ -53,7 +56,23 @@ const Registration = () => {
 		// dispatch();
 	};
 
-	const searchAddress = () => {};
+	const searchAddress = () => {
+		if (form.zipcode.length === 8) {
+			dispatch(getAddress(form.zipcode));
+		}
+	};
+
+	useEffect(() => {
+		if (address) {
+			setForm({
+				...form,
+				street: address.logradouro,
+				district: address.bairro,
+				city: address.localidade,
+				state: address.uf,
+			});
+		}
+	}, [address]);
 
 	return (
 		<IconBackground className="items-end justify-end" goBack>
