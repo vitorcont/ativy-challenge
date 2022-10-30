@@ -1,0 +1,14 @@
+{
+	"name": "ativy-challenge",
+	"version": "1.0.0",
+	"description": "Projeto desafio para ativy",
+	"main": "index.js",
+	"repository": "https://github.com/vitorcont/ativy-challenge.git",
+	"author": "Vítor Conti",
+	"license": "MIT",
+	"scripts": {
+		"start:backend": "cd ./backend && yarn start",
+		"start:dashboard": "cd ./dashboard && yarn start",
+		"install-dependencies": "cd ./dashboard && yarn && cd .. && cd ./backend && yarn"
+	}
+}

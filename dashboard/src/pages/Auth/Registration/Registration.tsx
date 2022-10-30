@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Button, IconBackground, Input, InputForm } from "@portal/components";
+import { Button, IconBackground, InputForm } from "@portal/components";
 import { useDispatch } from "react-redux";
-import { recovery } from "@portal/redux/Auth/actions";
 import { validateEmpty, validateEqual } from "@portal/utils/validators";
 import ToastService from "@portal/services/toast";
 import { createUser, getAddress } from "@portal/redux/User/actions";
@@ -53,7 +52,6 @@ const Registration = () => {
 				);
 			}
 		}
-		// dispatch();
 	};
 
 	const searchAddress = () => {

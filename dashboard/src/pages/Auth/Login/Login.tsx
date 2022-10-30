@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, IconBackground, Input } from "@portal/components";
 import { useDispatch } from "react-redux";
 import { authenticate } from "@portal/redux/Auth/actions";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import RouteService from "@portal/services/routes";
 
 const Login = () => {

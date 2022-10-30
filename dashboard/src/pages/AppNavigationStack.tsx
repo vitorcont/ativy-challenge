@@ -1,5 +1,4 @@
-import RouteService from "@portal/services/routes";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import AuthNavigationStack from "./Auth/AuthNavigationStack";
 import ContentNavigationStack from "./Content/ContentNavigationStack";
 
