@@ -14,15 +14,15 @@
 - React Redux
 - React Router
 
-### Design Patterns
+## Design Patterns
 
-## Componentes
+### Componentes
 
 Para os componentes foi utilizada a componentização atômica
 
 Referência: https://atomicdesign.bradfrost.com/chapter-2/
 
-## Redux
+### Redux
 
 Para a gestão de estado foi utilizado o Module Pattern, onde os módulos são divididos por contextos.
 
