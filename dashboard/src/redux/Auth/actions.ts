@@ -29,3 +29,8 @@ export const authenticate =
 			);
 		}
 	};
+
+export const logout = () => async (dispatch: any) => {
+	RouteService.logout();
+	StorageService.clear();
+};

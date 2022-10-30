@@ -3,7 +3,7 @@ import {
 	Background,
 	Button,
 	DataTable,
-	TableAction,
+	Header,
 	TaskModal,
 } from "@portal/components";
 import { GridColumns } from "@mui/x-data-grid";
@@ -46,7 +46,6 @@ const List = () => {
 			field: "dueDate",
 			headerName: "Data Limite",
 			flex: 1,
-			// renderCell: (o) => treatShortDate(o.row.dueDate),
 		},
 		{
 			field: "concludedAt",
@@ -141,7 +140,8 @@ const List = () => {
 
 	return (
 		<Background className="items-center justify-center bg-background">
-			<div className="bg-white w-[80%] h-[80%] p-3 rounded-md">
+			<Header />
+			<div className="bg-white w-[80%] h-[80%] mt-16 p-3 rounded-md">
 				<Button
 					label="Nova Tarefa"
 					onPress={() => setVisible(true)}

@@ -49,7 +49,11 @@ const RouteService = {
 		return `${routes.find((o) => o.name === name)?.route}`;
 	},
 	navigate: (route: string, subRoute: string) => {
+		console.log(RouteService.getRouteStackPath(route, subRoute));
 		window.location.href = RouteService.getRouteStackPath(route, subRoute);
+	},
+	logout: () => {
+		window.location.href = "/";
 	},
 };
 

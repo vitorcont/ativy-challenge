@@ -1,3 +1,4 @@
+import RouteService from "@portal/services/routes";
 import { StorageEnum } from "./../models/enumerators/storage";
 import Axios, {
 	AxiosError,
@@ -41,6 +42,16 @@ axiosInstance.interceptors.request.use((request) => {
 axiosInstance.interceptors.response.use(
 	(response: AxiosResponse) => response,
 	async (err) => {
+		console.log(err.response.status);
+		if (
+			err &&
+			err.response &&
+			err.response.status &&
+			err.response.status === 401
+		) {
+			RouteService.logout();
+			StorageService.clear();
+		}
 		handler.unauthorizedError(err);
 
 		return Promise.reject(handleAxiosError(err));
