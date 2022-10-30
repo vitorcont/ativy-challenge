@@ -25,17 +25,19 @@ Para começar a rodar a API você deve primeiramente configurar as variáveis de
 
 ```
 JWT_TOKEN=yourJWTKey
-API_PORT=apiPort
+API_PORT=[apiPort | 4547]
 DB_NAME=ativy_backend
 DB_USER=root
 DB_PASSWORD=yourDbPassword
-DB_HOST= dbHost
+DB_HOST=dbHost
 EMAIL_PROVIDER=yourEmailService
 EMAIL_HOST=yourEmailAccount
 EMAIL_PASSWORD=yourAppKey
 ```
 
 Esse template deve ser colocado em um arquivo `.env` dentro da root do projeto backend.
+
+As chaves `EMAIL_PASSWORD` e `EMAIL_HOST` são referentes a seu email e sua chave de API do Gmail.
 
 ## Instruções de configuração do projeto
 

@@ -22,7 +22,23 @@ const cols = {
 		type: Sequelize.STRING,
 		allowNull: false,
 	},
-	address: {
+	zipcode: {
+		type: Sequelize.STRING,
+		allowNull: false,
+	},
+	street: {
+		type: Sequelize.STRING,
+		allowNull: false,
+	},
+	district: {
+		type: Sequelize.STRING,
+		allowNull: false,
+	},
+	city: {
+		type: Sequelize.STRING,
+		allowNull: false,
+	},
+	state: {
 		type: Sequelize.STRING,
 		allowNull: false,
 	},
