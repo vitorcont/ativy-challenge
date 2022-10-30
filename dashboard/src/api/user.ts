@@ -13,6 +13,10 @@ const UserApi = {
 
 		return data;
 	},
+	create: async (userData: models.User) => {
+		const instance = await getInstance();
+		await instance.post("/user", userData);
+	},
 };
 
 export default UserApi;

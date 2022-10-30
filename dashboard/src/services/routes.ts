@@ -12,12 +12,12 @@ const routes: models.Route[] = [
 			{
 				id: "registration",
 				name: "registration",
-				route: "/registration",
+				route: "registration",
 			},
 			{
 				id: "recovery",
 				name: "recovery",
-				route: "/recovery",
+				route: "recovery",
 			},
 		],
 	},

@@ -30,6 +30,18 @@ export const authenticate =
 		}
 	};
 
+export const recovery =
+	(email: string, callback?: () => void) => async (dispatch: any) => {
+		try {
+			await AuthApi.recovery(email);
+			ToastService.success("Email enviado com sucesso!");
+		} catch (err) {
+			ToastService.error(
+				"Email incorreto ou usuário não encontrado, verifique seus dados e tente novamente.",
+			);
+		}
+	};
+
 export const logout = () => async (dispatch: any) => {
 	RouteService.logout();
 	StorageService.clear();

@@ -10,7 +10,7 @@ const InputForm = (props: IInputFormProps) => {
 		<div className="w-[100%]">
 			{props.fields.map((field) => (
 				<div className={`pb-3 ${field.className}`}>
-					<Input {...field} />
+					<Input className="w-[100%]" {...field} />
 				</div>
 			))}
 		</div>

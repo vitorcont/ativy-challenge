@@ -31,12 +31,11 @@ export type User = {
 };
 
 export type Address = {
-	id?: string;
 	cep: string;
-	street: string;
-	city: string;
-	state: string;
-	country: string;
+	logradouro: string;
+	bairro: string;
+	localidade: string;
+	uf: string;
 };
 
 export type Task = {

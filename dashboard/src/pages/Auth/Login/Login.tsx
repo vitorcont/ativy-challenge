@@ -3,6 +3,7 @@ import { Button, IconBackground, Input } from "@portal/components";
 import { useDispatch } from "react-redux";
 import { authenticate } from "@portal/redux/Auth/actions";
 import { Link, useHistory } from "react-router-dom";
+import RouteService from "@portal/services/routes";
 
 const Login = () => {
 	const [form, setForm] = useState({
@@ -39,12 +40,12 @@ const Login = () => {
 					/>
 				</div>
 				<div className="w-[100%]">
-					<Link to="/">
+					<Link to={RouteService.getRouteStackPath("auth", "recovery")}>
 						<p className="text-primary underline font-sans bold font-semibold text-sm">
 							Esqueceu sua senha?
 						</p>
 					</Link>
-					<Link to="/">
+					<Link to={RouteService.getRouteStackPath("auth", "registration")}>
 						<p className="text-primary underline font-sans bold font-semibold text-sm">
 							Não possui uma conta? Clique aqui
 						</p>

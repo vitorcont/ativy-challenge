@@ -1,3 +1,4 @@
+import RouteService from "@portal/services/routes";
 import { StorageEnum } from "@portal/models/enumerators/storage";
 
 import AuthApi from "@portal/api/auth";
@@ -23,3 +24,19 @@ export const getMe = (callback?: () => void) => async (dispatch: any) => {
 		);
 	}
 };
+
+export const createUser =
+	(userData: models.User, callback?: () => void) => async (dispatch: any) => {
+		try {
+			const payload = await UserApi.create(userData);
+			if (callback) {
+				callback();
+			}
+			ToastService.success("Usuário criado com sucesso!");
+			setTimeout(() => {
+				RouteService.logout();
+			}, 3000);
+		} catch (err) {
+			ToastService.error("Ops, não foi possívei criar seu usuário no momento.");
+		}
+	};

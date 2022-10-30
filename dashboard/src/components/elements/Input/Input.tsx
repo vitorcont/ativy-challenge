@@ -64,7 +64,7 @@ const Input = (props: IInputProps) => {
 			) : (
 				<TextField
 					variant="outlined"
-					className={`bg-black ${props.className}`}
+					className={props.className}
 					type={getKeyboardType()}
 					onChange={(event) => {
 						props.onChangeText(event.target.value);
