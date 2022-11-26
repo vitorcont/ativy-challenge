@@ -25,35 +25,31 @@ public class Window {
   }
   public JButton createButton(String title){
     JButton button = new JButton(title);
-    box.add(button);
 
     return button;
   }
 
   public JFileChooser createFileInput(){
     JFileChooser input = new JFileChooser();
-//    box.add(input);
 
     return input;
   }
 
-  public JTextArea createTextInput(int width,int height, float alignX, float alignY, boolean scrollbar){
+  public JScrollPane createScroll(int width, int height, Component c){
+    Dimension size = new Dimension(width,height);
+    JScrollPane scroll = new JScrollPane (c,
+            JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    scroll.setPreferredSize(size);
+
+    return scroll;
+  }
+  public JTextArea createTextInput(int width,int height, float alignX, float alignY){
     JTextArea input = new JTextArea();
     Dimension size = new Dimension(width,height);
     input.setAlignmentX(alignX);
     input.setAlignmentY(alignY);
     input.setAutoscrolls(true);
-
-    if(scrollbar){
-      JScrollPane scroll = new JScrollPane (input,
-              JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-      scroll.setPreferredSize(size);
-
-      box.add(scroll);
-    } else {
-      input.setPreferredSize(size);
-      box.add(input);
-    }
+    input.setPreferredSize(size);
 
 
     return input;
@@ -61,17 +57,16 @@ public class Window {
 
   public JLabel createText(String textValue){
     JLabel text = new JLabel(textValue);
-    box.add(text);
 
     return text;
   }
 
-  public JLabel createText(String textValue, int width, int height){
-    JLabel text = new JLabel(textValue);
-    text.setAlignmentX(width);
-    box.add(text);
+  public JPanel createPanel(int width, int height){
+    Dimension size = new Dimension(width,height);
+    JPanel panel = new JPanel();
+    panel.setPreferredSize(size);
 
-    return text;
+    return panel;
   }
 
   public JTable createTable(String[] columns, int numRows, int width,int height){
@@ -92,7 +87,6 @@ public class Window {
             JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     scroll.setPreferredSize(size);
 
-    box.add(scroll);
 
     return table;
   }
@@ -101,4 +95,8 @@ public class Window {
   public Container getBox(){
     return box;
   }
+  public JFrame getFrame(){
+    return frame;
+  }
+
 }
