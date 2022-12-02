@@ -8,7 +8,7 @@ Foi desenvolvida uma aplicação ponta a ponta frontend (ReactTS) - backend (Nod
 - CRUD de Tarefas
 - Integração com ViaCep
 
-Todas as funcionalidades acima estão funcionais tanto no fronted quanto no backend
+Todas as funcionalidades acima estão funcionais tanto no frontend quanto no backend
 
 ## Documentação
 
