@@ -73,12 +73,12 @@ const Registration = () => {
 	}, [address]);
 
 	return (
-		<IconBackground className="items-end justify-end" goBack>
-			<div className=" w-1/4 flex flex-col items-center place-items-center p-4 rounded-md mb-[1%] mr-[10%]">
-				<p className="text-primary text-center font-sans bold font-semibold text-lg mb-4 w-[65%]">
+		<IconBackground className='items-end justify-end' goBack>
+			<div className=' flex flex-col items-center place-items-center p-4 rounded-md mb-[1%]'>
+				<p className='text-primary text-center font-sans bold font-semibold text-lg mb-4 w-[100%]'>
 					Insira seus dados e vamos começar a organizar o seu dia juntos!
 				</p>
-				<div className="w-[100%]">
+				<div className='w-[100%]'>
 					{step === 1 ? (
 						<InputForm
 							fields={[
@@ -150,7 +150,7 @@ const Registration = () => {
 					)}
 				</div>
 				<Button
-					className="w-[60%]"
+					className='w-[60%]'
 					label={step === 1 ? "Próximo" : "Cadastrar"}
 					onPress={onSubmit}
 				/>
