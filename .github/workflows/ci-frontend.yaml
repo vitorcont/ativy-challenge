@@ -15,8 +15,8 @@ jobs:
   install_and_build:
     runs-on: self-hosted
     steps:
-      - working-directory: ./dashboard
       - name: Install dependencies
+        working-directory: ./dashboard
         run: yarn install
       - name: Build
         run: yarn build
