@@ -37,15 +37,19 @@ const Input = (props: IInputProps) => {
 			{props.dateInput ? (
 				<LocalizationProvider adapterLocale={"ptBR"} dateAdapter={AdapterDayjs}>
 					<DatePicker
-						value={fromFormatToFormat(props.value, "dd/mm/yyyy", "yyyy-mm-dd")}
+						value={fromFormatToFormat(
+							props.value as any,
+							"dd/mm/yyyy",
+							"yyyy-mm-dd",
+						)}
 						onChange={(val: Dayjs | null) => {
 							if (val) {
 								props.onChangeText(val.format("DD/MM/YYYY"));
 							}
 						}}
 						className={props.className}
-						inputFormat="DD/MM/YYYY"
-						mask="__/__/____"
+						inputFormat='DD/MM/YYYY'
+						mask='__/__/____'
 						InputProps={{}}
 						renderInput={(params) => (
 							<TextField
@@ -63,7 +67,7 @@ const Input = (props: IInputProps) => {
 				</LocalizationProvider>
 			) : (
 				<TextField
-					variant="outlined"
+					variant='outlined'
 					className={props.className}
 					type={getKeyboardType()}
 					onChange={(event) => {
@@ -76,11 +80,11 @@ const Input = (props: IInputProps) => {
 						...(props.password
 							? {
 									endAdornment: (
-										<InputAdornment position="end">
+										<InputAdornment position='end'>
 											<IconButton
-												aria-label="toggle password visibility"
+												aria-label='toggle password visibility'
 												onClick={() => setPasswordVisible(!passwordVisible)}
-												edge="end"
+												edge='end'
 											>
 												{passwordVisible ? <VisibilityOff /> : <Visibility />}
 											</IconButton>

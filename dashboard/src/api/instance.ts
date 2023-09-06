@@ -40,7 +40,7 @@ const clearAxiosInstance = Axios.create({
 	timeout: parseInt(API_TIMEOUT, 1000),
 });
 
-axiosInstance.interceptors.request.use((request) => {
+axiosInstance.interceptors.request.use((request: any) => {
 	const token = StorageService.getItem(StorageEnum.TOKEN);
 	request.headers.Authorization = token ? `Bearer ${token}` : undefined;
 

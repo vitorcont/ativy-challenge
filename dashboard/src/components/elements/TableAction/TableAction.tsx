@@ -27,8 +27,8 @@ const TableAction = (props: ITableActionProps) => {
 		<>
 			<div
 				id={id}
-				className="cursor-pointer rounded-lg p-1 hover:bg-slate-200"
-				onClick={handleClick}
+				className='cursor-pointer rounded-lg p-1 hover:bg-slate-200'
+				onClick={handleClick as any}
 			>
 				<MoreVertIcon />
 			</div>
@@ -42,11 +42,11 @@ const TableAction = (props: ITableActionProps) => {
 					horizontal: "left",
 				}}
 			>
-				<div className="flex-col flex p-1">
-					<Button color="success" onClick={() => props.onEdit(props.rowId)}>
+				<div className='flex-col flex p-1'>
+					<Button color='success' onClick={() => props.onEdit(props.rowId)}>
 						Editar
 					</Button>
-					<Button color="error" onClick={() => props.onDelete(props.rowId)}>
+					<Button color='error' onClick={() => props.onDelete(props.rowId)}>
 						Deletar
 					</Button>
 				</div>

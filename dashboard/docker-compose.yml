@@ -1,0 +1,6 @@
+services:
+  app:
+    container_name: todo-dashboard
+    build: .
+    ports:
+      - 3030:80

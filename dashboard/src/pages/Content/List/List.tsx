@@ -77,7 +77,9 @@ const List = () => {
 			};
 		}
 
-		dispatch(updateTask(payload, () => dispatch(getTasks(me?.id ?? ""))));
+		dispatch(
+			updateTask(payload as any, () => dispatch(getTasks(me?.id ?? ""))),
+		);
 	};
 
 	const onSubmitModal = () => {
@@ -126,7 +128,7 @@ const List = () => {
 
 	useEffect(() => {
 		if (me) {
-			dispatch(getTasks(me.id));
+			dispatch(getTasks(me.id as any));
 		}
 	}, [me]);
 
@@ -139,24 +141,24 @@ const List = () => {
 	}, [taskList]);
 
 	return (
-		<Background className="items-center justify-center bg-background">
+		<Background className='items-center justify-center bg-background'>
 			<Header />
-			<div className="bg-white w-[80%] h-[80%] mt-16 p-3 rounded-md">
+			<div className='bg-white w-[80%] h-[80%] mt-16 p-3 rounded-md'>
 				<Button
-					label="Nova Tarefa"
+					label='Nova Tarefa'
 					onPress={() => setVisible(true)}
-					className="w-[20%] text-sm h-10"
+					className='w-[20%] text-sm h-10'
 				/>
-				<div className="h-[80%] pt-4 w-[100%]">
+				<div className='h-[80%] pt-4 w-[100%]'>
 					<DataTable
 						onEditRow={onPressEditTask}
 						onDeleteRow={onDeleteTask}
-						className="h-14"
+						className='h-14'
 						rows={taskList}
 						columns={columns}
 						checkboxSelection
 						onSelectionModelChange={(selectionModel) =>
-							onSelectRow(selectionModel)
+							onSelectRow(selectionModel as any)
 						}
 						selectionModel={doneItems!}
 					/>

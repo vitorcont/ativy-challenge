@@ -10,7 +10,7 @@ interface IApiError {
 	message: string;
 }
 
-const handleAxiosError = (err: AxiosError): IApiError => {
+const handleAxiosError = (err: any): IApiError => {
 	if (
 		err.response &&
 		err.response.status === 400 &&
