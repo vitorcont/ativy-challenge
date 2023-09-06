@@ -1,4 +1,4 @@
-name: "Frontend Deploy Automation"
+name: Frontend Deploy Automation
 
 on:
   workflow_dispatch:
@@ -7,9 +7,9 @@ on:
       - main
     paths:
       - "dashboard/*"
-  jobs:
-    build:
-      runs-on: self-hosted
-      steps:
-        - run: cd ./dashboard
-        - run: docker compose up
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - run: cd ./dashboard
+      - run: docker compose up
