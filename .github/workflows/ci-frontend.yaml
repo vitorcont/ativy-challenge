@@ -15,9 +15,10 @@ jobs:
   install_and_build:
     runs-on: self-hosted
     steps:
-      - name: Yarn Install
+      - working-directory: ./dashboard
+      - name: Install dependencies
         run: yarn install
-      - name: Yarn Install
+      - name: Build
         run: yarn build
   upload_container:
     runs-on: self-hosted
