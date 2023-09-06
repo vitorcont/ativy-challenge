@@ -11,5 +11,5 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - working-directory: /dashboard
+      - working-directory: ./dashboard
         run: docker compose up
