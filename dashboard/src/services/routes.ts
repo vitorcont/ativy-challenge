@@ -2,7 +2,7 @@ const routes: models.Route[] = [
 	{
 		id: "auth",
 		name: "auth",
-		route: "/",
+		route: "/apps/ativy-todo",
 		items: [
 			{
 				id: "login",
@@ -12,19 +12,19 @@ const routes: models.Route[] = [
 			{
 				id: "registration",
 				name: "registration",
-				route: "registration",
+				route: "/registration",
 			},
 			{
 				id: "recovery",
 				name: "recovery",
-				route: "recovery",
+				route: "/recovery",
 			},
 		],
 	},
 	{
 		id: "content",
 		name: "content",
-		route: "/content",
+		route: "/apps/ativy-todo/content",
 		items: [
 			{
 				id: "list",
