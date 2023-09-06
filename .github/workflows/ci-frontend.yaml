@@ -11,5 +11,5 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - run: cd dashboard
+      - run: ls
       - run: docker compose up
