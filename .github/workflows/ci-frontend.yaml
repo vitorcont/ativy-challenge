@@ -13,7 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
   install_and_build:
-    runs-on: self-hosted
     steps:
       - name: Install dependencies
         working-directory: dashboard
@@ -21,7 +20,6 @@ jobs:
       - name: Build
         run: yarn build
   upload_container:
-    runs-on: self-hosted
     steps:
       - name: Stop Container
         run: docker compose down -v
