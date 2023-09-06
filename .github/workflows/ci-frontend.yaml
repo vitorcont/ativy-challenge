@@ -1,12 +1,12 @@
 name: Frontend Deploy Automation
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
     paths:
       - "dashboard/*"
+  workflow_dispatch:
 jobs:
   build:
     runs-on: self-hosted
