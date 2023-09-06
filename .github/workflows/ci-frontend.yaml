@@ -11,17 +11,10 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-       - name: Check Repository Contents
+      - name: Check Repository Contents
          run: ls -lR
-
       - name: Change Directory
         working-directory: ./dashboard
         run: cd ./dashboard
-
-      - name: Debug Docker Compose
-        run: |
-          docker --version
-          docker-compose --version
-
       - name: Docker Compose Up
         run: docker compose up
