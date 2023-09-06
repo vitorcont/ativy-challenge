@@ -12,6 +12,7 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
+      - uses: actions/checkout@v1
       - name: Check Repository Contents
         run: ls -lR
       - name: Change Directory
