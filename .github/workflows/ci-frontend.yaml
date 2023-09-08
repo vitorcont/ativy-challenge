@@ -14,8 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
   install_and_build:
-    name: Install Deps and Build
     runs-on: self-hosted
+    needs: pull
     steps:
       - name: Install dependencies
         working-directory: dashboard
@@ -24,8 +24,8 @@ jobs:
         working-directory: dashboard
         run: yarn build
   upload_container:
-    name: Updating Docker
     runs-on: self-hosted
+    needs: install_and_build
     steps:
       - name: Stop Container
         working-directory: dashboard
