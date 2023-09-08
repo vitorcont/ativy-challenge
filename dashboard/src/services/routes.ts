@@ -7,17 +7,17 @@ const routes: models.Route[] = [
 			{
 				id: "login",
 				name: "login",
-				route: "/",
+				route: "",
 			},
 			{
 				id: "registration",
 				name: "registration",
-				route: "/registration",
+				route: "-registration",
 			},
 			{
 				id: "recovery",
 				name: "recovery",
-				route: "/recovery",
+				route: "-recovery",
 			},
 		],
 	},
